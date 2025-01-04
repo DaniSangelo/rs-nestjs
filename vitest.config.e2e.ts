@@ -7,6 +7,9 @@ export default defineConfig({
         include: ['**/*.e2e-spec.ts'],
         globals: true,
         root: './',
+        setupFiles: [
+            './test/setup-e2e.ts'
+        ]
     },
     resolve: {
         alias: {
