@@ -27,7 +27,5 @@ import { JwtStrategy } from "./jwt.strategy";
     providers:[JwtStrategy]
 })
 export class AuthModule {
-    constructor() {
-        console.log("AuthModule");
-    }
+    constructor() {}
 }
