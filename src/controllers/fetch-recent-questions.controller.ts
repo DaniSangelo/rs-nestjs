@@ -1,4 +1,4 @@
-import { Controller, Get, Query, UseGuards } from "@nestjs/common";
+import { Controller, Get, HttpCode, Query, UseGuards } from "@nestjs/common";
 import { JwtAuthGuard } from "@/auth/jwt-auth.guard";
 import { ZodValidationPipe } from "@/pipes/zod-validation-pipe";
 import { PrismaService } from "@/prisma/prisma.service";
@@ -19,8 +19,9 @@ export class FetchRecentQuestionsController {
     ){}
 
     @Get()
+    @HttpCode(200)
     async handle(@Query('page', queryValidationPipe) page: PageQueryParamsSchema) {
-        const perPage = 1
+        const perPage = 20
         const questions = await this.prismaService.question.findMany({
             take: perPage,
             skip: (page - 1) * perPage,
@@ -28,6 +29,6 @@ export class FetchRecentQuestionsController {
                 createdAt: 'desc'
             },
         })
-        return { questions}
+        return { questions }
     }
 }
