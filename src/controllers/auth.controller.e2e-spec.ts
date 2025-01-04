@@ -1,12 +1,10 @@
 import { AppModule } from "@/app.module";
-import { PrismaService } from "@/prisma/prisma.service";
 import { INestApplication } from "@nestjs/common";
-import { Test } from '@nestjs/testing';
-import request from 'supertest';
+import { Test } from '@nestjs/testing'
+import request from 'supertest'
 
-describe('Create account (E2E)', () => {
+describe('Authenticate user (E2E)', () => {
   let app: INestApplication;
-  let prisma: PrismaService
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -16,12 +14,10 @@ describe('Create account (E2E)', () => {
 
     app = moduleRef.createNestApplication();
 
-    prisma = moduleRef.get(PrismaService)
-
     await app.init();
   });
 
-  test('[POST] /accounts', async () => {
+  test('[POST] /sessions', async () => {
     const response = await request(app.getHttpServer()).post('/accounts').send({
         email: 'daniel@mail.com',
         password: '123456',
@@ -30,26 +26,8 @@ describe('Create account (E2E)', () => {
 
     expect(response.statusCode).toBe(201)
 
-    const wasAccountCreated = await prisma.user.findUnique({
-        where: {
-            email: 'daniel@mail.com'
-        }
-    })
-
-    expect(wasAccountCreated).toBeTruthy()
-  })
-
-  test('[POST] /sessions', async () => {
-    const response = await request(app.getHttpServer()).post('/accounts').send({
-        email: 'daniel2@mail.com',
-        password: '123456',
-        name: 'Daniel'
-    })
-
-    expect(response.statusCode).toBe(201)
-
     const authenticatedUser = await request(app.getHttpServer()).post('/sessions').send({
-        email: 'daniel2@mail.com',
+        email: 'daniel@mail.com',
         password: '123456'
     })
 
