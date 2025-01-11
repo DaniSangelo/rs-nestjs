@@ -1,39 +1,38 @@
-import { AppModule } from "@/app.module";
-import { PrismaService } from "@/prisma/prisma.service";
-import { INestApplication } from "@nestjs/common";
-import { Test } from '@nestjs/testing';
-import request from 'supertest';
+import { AppModule } from '@/app.module'
+import { PrismaService } from '@/prisma/prisma.service'
+import { INestApplication } from '@nestjs/common'
+import { Test } from '@nestjs/testing'
+import request from 'supertest'
 
 describe('Create account (E2E)', () => {
-  let app: INestApplication;
+  let app: INestApplication
   let prisma: PrismaService
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
-    })
-      .compile();
+    }).compile()
 
-    app = moduleRef.createNestApplication();
+    app = moduleRef.createNestApplication()
 
     prisma = moduleRef.get(PrismaService)
 
-    await app.init();
-  });
+    await app.init()
+  })
 
   test('[POST] /accounts', async () => {
     const response = await request(app.getHttpServer()).post('/accounts').send({
-        email: 'daniel@mail.com',
-        password: '123456',
-        name: 'Daniel'
+      email: 'daniel@mail.com',
+      password: '123456',
+      name: 'Daniel',
     })
 
     expect(response.statusCode).toBe(201)
 
     const wasAccountCreated = await prisma.user.findUnique({
-        where: {
-            email: 'daniel@mail.com'
-        }
+      where: {
+        email: 'daniel@mail.com',
+      },
     })
 
     expect(wasAccountCreated).toBeTruthy()
@@ -41,21 +40,23 @@ describe('Create account (E2E)', () => {
 
   test('[POST] /sessions', async () => {
     const response = await request(app.getHttpServer()).post('/accounts').send({
-        email: 'daniel2@mail.com',
-        password: '123456',
-        name: 'Daniel'
+      email: 'daniel2@mail.com',
+      password: '123456',
+      name: 'Daniel',
     })
 
     expect(response.statusCode).toBe(201)
 
-    const authenticatedUser = await request(app.getHttpServer()).post('/sessions').send({
+    const authenticatedUser = await request(app.getHttpServer())
+      .post('/sessions')
+      .send({
         email: 'daniel2@mail.com',
-        password: '123456'
-    })
+        password: '123456',
+      })
 
     expect(authenticatedUser.statusCode).toBe(200)
     expect(authenticatedUser.body).toEqual({
-        access_token: expect.any(String)
+      access_token: expect.any(String),
     })
   })
 })
