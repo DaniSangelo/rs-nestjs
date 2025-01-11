@@ -39,7 +39,7 @@ model Question {
   updatedAt    DateTime? @updatedAt @map("updated_at")
   bestAnswerId String?   @unique() @map("best_answer_id")
   authorId     String    @map("author_id")
-  answerId     String    @map("answer_id")
+  // answerId     String    @map("answer_id")
 
   author     User     @relation(fields: [authorId], references: [id])
   bestAnswer Answer?  @relation("bestAnswer", fields: [bestAnswerId], references: [id])
