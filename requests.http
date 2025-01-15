@@ -7,7 +7,7 @@ content-type: application/json
 
 {
     "name": "Daniel2",
-    "email": "daniel2@mail.com",
+    "email": "daniel3@mail.com",
     "password": "123456"
 }
 
@@ -18,7 +18,7 @@ POST {{baseUrl}}/sessions
 content-type: application/json
 
 {
-    "email": "daniel2@mail.com",
+    "email": "daniel3@mail.com",
     "password": "123456"
 }
 
@@ -29,7 +29,7 @@ content-type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-    "title": "Operator de coalescência nula em JS 212",
+    "title": "Operator de coalescência nula em JS 2122",
     "content": "Qual o operador de coalescência nula em js 11?"
 }
 
