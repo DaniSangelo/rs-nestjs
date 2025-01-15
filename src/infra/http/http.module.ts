@@ -5,6 +5,7 @@ import { CreateQuestionController } from './controllers/create-question.controll
 import { FetchRecentQuestionsController } from './controllers/fetch-recent-questions.controller'
 import { DatabaseModule } from '../database/database.module'
 import { CreateQuestionUseCaseAdapter } from '../use-case-adapter/create-question-use-case-adapter'
+import { FetchRecentQuestionsUseCaseAdapter } from '../use-case-adapter/fetch-recent-questions-adapter'
 
 @Module({
   imports: [DatabaseModule],
@@ -14,6 +15,6 @@ import { CreateQuestionUseCaseAdapter } from '../use-case-adapter/create-questio
     CreateQuestionController,
     FetchRecentQuestionsController,
   ],
-  providers: [CreateQuestionUseCaseAdapter],
+  providers: [CreateQuestionUseCaseAdapter, FetchRecentQuestionsUseCaseAdapter],
 })
 export class HttpModule {}
