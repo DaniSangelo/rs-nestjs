@@ -1,6 +1,7 @@
 import { PaginationParams } from '@/core/repositories/pagination-params'
 import { Question } from '../../enterprise/entities/question'
 
+export const QUESTIONS_REPOSITORY = Symbol('QuestionsRepository');
 export interface QuestionsRepository {
   create(question: Question): Promise<void>
   save(question: Question): Promise<void>
