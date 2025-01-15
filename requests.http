@@ -29,8 +29,8 @@ content-type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-    "title": "Operator de coalescência nula em JS 1",
-    "content": "Qual o operador de coalescência nula em js 1?"
+    "title": "Operator de coalescência nula em JS 212",
+    "content": "Qual o operador de coalescência nula em js 11?"
 }
 
 ###
