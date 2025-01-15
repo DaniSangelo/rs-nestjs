@@ -4,7 +4,7 @@ import { JwtAuthGuard } from '@/infra/auth/jwt-auth.guard'
 import { TokenPayloadSchema } from '@/infra/auth/jwt.strategy'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { z } from 'zod'
-import { CreateQuestionUseCaseAdapter } from '@/infra/use-case-adapter/create-question-use-case-adapter'
+import { CreateQuestionUseCaseAdapter } from '@/infra/use-case-adapter/create-question-adapter'
 
 const createQuestionBodySchema = z.object({
   title: z.string(),

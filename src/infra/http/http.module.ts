@@ -4,7 +4,7 @@ import { AuthController } from './controllers/auth.controller'
 import { CreateQuestionController } from './controllers/create-question.controller'
 import { FetchRecentQuestionsController } from './controllers/fetch-recent-questions.controller'
 import { DatabaseModule } from '../database/database.module'
-import { CreateQuestionUseCaseAdapter } from '../use-case-adapter/create-question-use-case-adapter'
+import { CreateQuestionUseCaseAdapter } from '../use-case-adapter/create-question-adapter'
 import { FetchRecentQuestionsUseCaseAdapter } from '../use-case-adapter/fetch-recent-questions-adapter'
 
 @Module({
