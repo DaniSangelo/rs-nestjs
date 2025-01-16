@@ -49,3 +49,8 @@ Authorization: Bearer {{authToken}}
 }
 
 ###
+DELETE {{baseUrl}}/questions/49edd37f-57af-475a-a861-92d87e382252
+content-type: application/json
+Authorization: Bearer {{authToken}}
+
+###

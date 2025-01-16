@@ -14,6 +14,8 @@ import { GetQuestionsBySlugController } from './controllers/get-question-by-slug
 import { GetQuestionsBySlugUseCaseAdapter } from '../use-case-adapter/get-questions-by-slug-adapter'
 import { EditQuestionController } from './controllers/edit-question.controller'
 import { EditQuestionUseCaseAdapter } from '../use-case-adapter/edit-question-adapter'
+import { DeleteQuestionController } from './controllers/delete-question.controller'
+import { DeleteQuestionUseCaseAdapter } from '../use-case-adapter/delete-question-adapter'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -23,7 +25,8 @@ import { EditQuestionUseCaseAdapter } from '../use-case-adapter/edit-question-ad
     CreateQuestionController,
     FetchRecentQuestionsController,
     GetQuestionsBySlugController,
-    EditQuestionController
+    EditQuestionController,
+    DeleteQuestionController,
   ],
   providers: [
     PrismaService,
@@ -33,6 +36,7 @@ import { EditQuestionUseCaseAdapter } from '../use-case-adapter/edit-question-ad
     AuthenticateStudentUseCase,
     GetQuestionsBySlugUseCaseAdapter,
     EditQuestionUseCaseAdapter,
+    DeleteQuestionUseCaseAdapter,
   ],
 })
 export class HttpModule {}

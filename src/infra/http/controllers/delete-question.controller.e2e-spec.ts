@@ -4,18 +4,18 @@ import { PrismaService } from '@/infra/database/prisma/prisma.service'
 import { INestApplication } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { Test } from '@nestjs/testing'
-import request from 'supertest'
 import { QuestionFactory } from 'test/factories/make-question'
 import { StudentFactory } from 'test/factories/make-student'
+import request from 'supertest'
 
-describe('Edit question (E2E)', () => {
+describe('Delete question E2E', () => {
   let app: INestApplication
   let prisma: PrismaService
   let jwtService: JwtService
   let studentFactory: StudentFactory
   let questionFactory: QuestionFactory
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule, DatabaseModule],
       providers: [StudentFactory, QuestionFactory],
@@ -30,35 +30,30 @@ describe('Edit question (E2E)', () => {
     await app.init()
   })
 
-  test('[PUT] /questions/:id', async () => {
+  test('[DELETE] /questions/:id', async () => {
     const user = await studentFactory.makePrismaStudent({
       email: 'daniel2@mail.com',
       password: '123456',
       name: 'Daniel',
     })
 
-    const accessToken = jwtService.sign({ sub: user.id.toString() })
+    const accessToken = jwtService.sign({
+      sub: user.id.toString(),
+    })
 
     const question = await questionFactory.makePrismaQuestion({
       authorId: user.id,
     })
 
     const response = await request(app.getHttpServer())
-      .put(`/questions/${question.id.toString()}`)
+      .delete(`/questions/${question.id.toString()}`)
       .set('Authorization', `Bearer ${accessToken}`)
-      .send({
-        title: 'New',
-        content: 'New content',
-      })
+      .send()
 
-    expect(response.statusCode).toBe(204)
-
-    const questionInDatabase = await prisma.question.findFirst({
-      where: {
-        title: 'New',
-        content: 'New content',
-      },
+    expect(response.statusCode).toBe(200)
+    const questionInDb = await prisma.question.findFirst({
+      where: { id: question.id.toString() },
     })
-    expect(questionInDatabase).toBeTruthy()
+    expect(questionInDb).toBeFalsy()
   })
 })
