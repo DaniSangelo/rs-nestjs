@@ -11,7 +11,6 @@ import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug'
 
 describe('Get question by slug (E2E)', () => {
   let app: INestApplication
-  let prisma: PrismaService
   let jwtService: JwtService
   let studentFactory: StudentFactory
   let questionFactory: QuestionFactory
@@ -23,7 +22,6 @@ describe('Get question by slug (E2E)', () => {
     }).compile()
 
     app = moduleRef.createNestApplication()
-    prisma = moduleRef.get(PrismaService)
     studentFactory = moduleRef.get(StudentFactory)
     questionFactory = moduleRef.get(QuestionFactory)
     jwtService = moduleRef.get(JwtService)
