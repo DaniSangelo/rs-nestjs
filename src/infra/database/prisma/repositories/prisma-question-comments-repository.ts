@@ -3,6 +3,7 @@ import { QuestionCommentsRepository } from '@/domain/forum/application/repositor
 import { QuestionComment } from '@/domain/forum/enterprise/entities/question-comment'
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma.service'
+import { PrismaQuestionCommentMapper } from '../mappers/prisma-question-comment-mapper'
 
 @Injectable()
 export class PrismaQuestionCommentsRepository
@@ -10,22 +11,50 @@ export class PrismaQuestionCommentsRepository
 {
   constructor(private prismaService: PrismaService) {}
 
-  create(questionComment: QuestionComment): Promise<void> {
-    throw new Error('Method not implemented.')
+  async create(questionComment: QuestionComment): Promise<void> {
+    const data = PrismaQuestionCommentMapper.toPrisma(questionComment)
+    await this.prismaService.comment.create({
+      data,
+    })
   }
 
-  delete(questionComment: QuestionComment): Promise<void> {
-    throw new Error('Method not implemented.')
+  async delete(questionComment: QuestionComment): Promise<void> {
+    await this.prismaService.comment.delete({
+      where: {
+        id: questionComment.id.toString(),
+      },
+    })
   }
 
-  findById(id: string): Promise<QuestionComment | null> {
-    throw new Error('Method not implemented.')
+  async findById(id: string): Promise<QuestionComment | null> {
+    const questionComment = await this.prismaService.comment.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    return questionComment
+      ? PrismaQuestionCommentMapper.toDomain(questionComment)
+      : null
   }
 
-  findManyByQuestionId(
+  async findManyByQuestionId(
     questionId: string,
-    params: PaginationParams,
+    { page }: PaginationParams,
   ): Promise<QuestionComment[]> {
-    throw new Error('Method not implemented.')
+    const questionComments = await this.prismaService.comment.findMany({
+      where: {
+        questionId,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+
+    return questionComments.map((questionComment) =>
+      PrismaQuestionCommentMapper.toDomain(questionComment),
+    )
   }
 }
