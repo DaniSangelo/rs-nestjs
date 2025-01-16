@@ -10,6 +10,8 @@ import { RegisterStudentUseCase } from '@/domain/forum/application/use-cases/reg
 import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases/authenticate-student'
 import { CryptographyModule } from '../cryptography/cryptograpy.module'
 import { PrismaService } from '../database/prisma/prisma.service'
+import { GetQuestionsBySlugController } from './controllers/get-question-by-slug.controller'
+import { GetQuestionsBySlugUseCaseAdapter } from '../use-case-adapter/get-questions-by-slug-adapter'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -18,6 +20,7 @@ import { PrismaService } from '../database/prisma/prisma.service'
     AuthController,
     CreateQuestionController,
     FetchRecentQuestionsController,
+    GetQuestionsBySlugController,
   ],
   providers: [
     PrismaService,
@@ -25,6 +28,7 @@ import { PrismaService } from '../database/prisma/prisma.service'
     FetchRecentQuestionsUseCaseAdapter,
     RegisterStudentUseCase,
     AuthenticateStudentUseCase,
+    GetQuestionsBySlugUseCaseAdapter,
   ],
 })
 export class HttpModule {}
