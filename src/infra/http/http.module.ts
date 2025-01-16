@@ -18,6 +18,8 @@ import { DeleteQuestionController } from './controllers/delete-question.controll
 import { DeleteQuestionUseCaseAdapter } from '../use-case-adapter/delete-question-adapter'
 import { CreateAnswerController } from './controllers/create-answer.controller'
 import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answer-question'
+import { EditAnswerController } from './controllers/edit-answer.controller'
+import { EditAnswerUseCase } from '@/domain/forum/application/use-cases/edit-answer'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -29,7 +31,8 @@ import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answ
     GetQuestionsBySlugController,
     EditQuestionController,
     DeleteQuestionController,
-    CreateAnswerController
+    CreateAnswerController,
+    EditAnswerController,
   ],
   providers: [
     PrismaService,
@@ -40,7 +43,8 @@ import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answ
     GetQuestionsBySlugUseCaseAdapter,
     EditQuestionUseCaseAdapter,
     DeleteQuestionUseCaseAdapter,
-    AnswerQuestionUseCase
+    AnswerQuestionUseCase,
+    EditAnswerUseCase,
   ],
 })
 export class HttpModule {}
