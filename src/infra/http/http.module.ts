@@ -16,6 +16,8 @@ import { EditQuestionController } from './controllers/edit-question.controller'
 import { EditQuestionUseCaseAdapter } from '../use-case-adapter/edit-question-adapter'
 import { DeleteQuestionController } from './controllers/delete-question.controller'
 import { DeleteQuestionUseCaseAdapter } from '../use-case-adapter/delete-question-adapter'
+import { CreateAnswerController } from './controllers/create-answer.controller'
+import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answer-question'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -27,6 +29,7 @@ import { DeleteQuestionUseCaseAdapter } from '../use-case-adapter/delete-questio
     GetQuestionsBySlugController,
     EditQuestionController,
     DeleteQuestionController,
+    CreateAnswerController
   ],
   providers: [
     PrismaService,
@@ -37,6 +40,7 @@ import { DeleteQuestionUseCaseAdapter } from '../use-case-adapter/delete-questio
     GetQuestionsBySlugUseCaseAdapter,
     EditQuestionUseCaseAdapter,
     DeleteQuestionUseCaseAdapter,
+    AnswerQuestionUseCase
   ],
 })
 export class HttpModule {}
