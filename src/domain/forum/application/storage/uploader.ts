@@ -4,6 +4,7 @@ export interface UploadParams {
   body: Buffer
 }
 
+export const UPLOADER = Symbol('Uploader')
 export interface Uploader {
   upload(params: UploadParams): Promise<{ link: string }>
 }
