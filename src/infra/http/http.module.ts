@@ -28,6 +28,8 @@ import { ChooseQuestionBestAnswerController } from './controllers/choose-questio
 import { ChooseQuestionBestAnswerUseCaseAdapter } from '../use-case-adapter/choose-question-best-answer-adapter'
 import { CommentOnQuestionUseCaseAdapter } from '../use-case-adapter/comment-on-question-adapter'
 import { CommentOnQuestionController } from './controllers/comment-on-question.controller'
+import { DeleteQuestionCommentUseCaseAdapter } from '../use-case-adapter/delete-question-comment-adapter'
+import { DeleteQuestionCommentController } from './controllers/delete-question-comment.controller'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -45,6 +47,7 @@ import { CommentOnQuestionController } from './controllers/comment-on-question.c
     FetchQuestionAnswersController,
     ChooseQuestionBestAnswerController,
     CommentOnQuestionController,
+    DeleteQuestionCommentController
   ],
   providers: [
     PrismaService,
@@ -61,6 +64,7 @@ import { CommentOnQuestionController } from './controllers/comment-on-question.c
     AuthenticateStudentUseCaseAdapter,
     ChooseQuestionBestAnswerUseCaseAdapter,
     CommentOnQuestionUseCaseAdapter,
+    DeleteQuestionCommentUseCaseAdapter
   ],
 })
 export class HttpModule {}
