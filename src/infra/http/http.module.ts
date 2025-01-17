@@ -17,13 +17,13 @@ import { EditQuestionUseCaseAdapter } from '../use-case-adapter/edit-question-ad
 import { DeleteQuestionController } from './controllers/delete-question.controller'
 import { DeleteQuestionUseCaseAdapter } from '../use-case-adapter/delete-question-adapter'
 import { CreateAnswerController } from './controllers/create-answer.controller'
-import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answer-question'
 import { EditAnswerController } from './controllers/edit-answer.controller'
-import { EditAnswerUseCase } from '@/domain/forum/application/use-cases/edit-answer'
 import { DeleteAnswerController } from './controllers/delete-answer.controller'
-import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/delete-answer'
 import { FetchQuestionAnswersController } from './controllers/fetch-question-answers.controller'
-import { FetchQuestionAnswersUseCase } from '@/domain/forum/application/use-cases/fetch-question-answers'
+import { EditAnswerUseCaseAdapter } from '../use-case-adapter/edit-answer-adapter'
+import { DeleteAnswerUseCaseAdapter } from '../use-case-adapter/delete-answer-adapter'
+import { AnswerQuestionUseCaseAdapter } from '../use-case-adapter/answer-question-adapter'
+import { FetchQuestionAnswersUseCaseAdapter } from '../use-case-adapter/fetch-question-answers-adapter'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -44,15 +44,15 @@ import { FetchQuestionAnswersUseCase } from '@/domain/forum/application/use-case
     PrismaService,
     CreateQuestionUseCaseAdapter,
     FetchRecentQuestionsUseCaseAdapter,
-    RegisterStudentUseCase,
-    AuthenticateStudentUseCase,
     GetQuestionsBySlugUseCaseAdapter,
     EditQuestionUseCaseAdapter,
     DeleteQuestionUseCaseAdapter,
-    AnswerQuestionUseCase,
-    EditAnswerUseCase,
-    DeleteAnswerUseCase,
-    FetchQuestionAnswersUseCase
+    AnswerQuestionUseCaseAdapter,
+    EditAnswerUseCaseAdapter,
+    DeleteAnswerUseCaseAdapter,
+    FetchQuestionAnswersUseCaseAdapter,
+    RegisterStudentUseCase,
+    AuthenticateStudentUseCase,
   ],
 })
 export class HttpModule {}

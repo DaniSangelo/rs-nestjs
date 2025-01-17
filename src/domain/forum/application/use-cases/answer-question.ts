@@ -4,7 +4,6 @@ import { Answer } from '../../enterprise/entities/answer'
 import { AnswersRepository } from '../repositories/answers-repository'
 import { AnswerAttachment } from '../../enterprise/entities/answer-attachment'
 import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachment-list'
-import { Injectable } from '@nestjs/common'
 
 interface AnswerQuestionUseCaseRequest {
   authorId: string
@@ -19,7 +18,6 @@ type AnswerQuestionUseCaseResponse = Either<
     answer: Answer
   }
 >
-@Injectable()
 export class AnswerQuestionUseCase {
   constructor(private answersRepository: AnswersRepository) {}
   async execute({

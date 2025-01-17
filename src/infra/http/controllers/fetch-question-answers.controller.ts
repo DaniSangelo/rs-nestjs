@@ -1,4 +1,3 @@
-import { FetchQuestionAnswersUseCase } from '@/domain/forum/application/use-cases/fetch-question-answers'
 import {
   BadRequestException,
   Controller,
@@ -9,6 +8,7 @@ import {
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
 import { AnswerPresenter } from '../presenters/answer-presenter'
+import { FetchQuestionAnswersUseCaseAdapter } from '@/infra/use-case-adapter/fetch-question-answers-adapter'
 
 const pageQueryParamsSchema = z
   .string()
@@ -24,7 +24,7 @@ type PageQueryParamsSchema = z.infer<typeof pageQueryParamsSchema>
 @Controller('/questions/:questionId/answers')
 export class FetchQuestionAnswersController {
   constructor(
-    private fetchQuestionAnswersUseCase: FetchQuestionAnswersUseCase,
+    private fetchQuestionAnswersUseCase: FetchQuestionAnswersUseCaseAdapter,
   ) {}
 
   @Get()

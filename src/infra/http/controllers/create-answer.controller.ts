@@ -1,9 +1,9 @@
-import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answer-question'
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { TokenPayloadSchema } from '@/infra/auth/jwt.strategy'
 import { Body, Controller, Param, Post } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
+import { AnswerQuestionUseCaseAdapter } from '@/infra/use-case-adapter/answer-question-adapter'
 
 const createAnswerQuestionBodySchema = z.object({
   content: z.string(),
@@ -14,7 +14,7 @@ type AnswerQuestionBodySchema = z.infer<typeof createAnswerQuestionBodySchema>
 
 @Controller('/questions/:questionId/answers')
 export class CreateAnswerController {
-  constructor(private createAnswerUseCase: AnswerQuestionUseCase) {}
+  constructor(private createAnswerUseCase: AnswerQuestionUseCaseAdapter) {}
 
   @Post()
   async handle(

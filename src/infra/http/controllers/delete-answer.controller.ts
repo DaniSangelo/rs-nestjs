@@ -1,11 +1,11 @@
-import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/delete-answer'
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { TokenPayloadSchema } from '@/infra/auth/jwt.strategy'
+import { DeleteAnswerUseCaseAdapter } from '@/infra/use-case-adapter/delete-answer-adapter'
 import { Controller, Delete, HttpCode, Param } from '@nestjs/common'
 
 @Controller('/answers/:id')
 export class DeleteAnswerController {
-  constructor(private deleteAnswerUseCase: DeleteAnswerUseCase) {}
+  constructor(private deleteAnswerUseCase: DeleteAnswerUseCaseAdapter) {}
 
   @Delete()
   @HttpCode(200)
