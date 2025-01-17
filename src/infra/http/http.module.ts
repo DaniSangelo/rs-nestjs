@@ -24,6 +24,8 @@ import { AnswerQuestionUseCaseAdapter } from '../use-case-adapter/answer-questio
 import { FetchQuestionAnswersUseCaseAdapter } from '../use-case-adapter/fetch-question-answers-adapter'
 import { RegisterStudentUseCaseAdapter } from '../use-case-adapter/register-student-adapter'
 import { AuthenticateStudentUseCaseAdapter } from '../use-case-adapter/authenticate-student-adapter'
+import { ChooseQuestionBestAnswerController } from './controllers/choose-question-best-answer.controller'
+import { ChooseQuestionBestAnswerUseCaseAdapter } from '../use-case-adapter/choose-question-best-answer-adapter'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -39,6 +41,7 @@ import { AuthenticateStudentUseCaseAdapter } from '../use-case-adapter/authentic
     EditAnswerController,
     DeleteAnswerController,
     FetchQuestionAnswersController,
+    ChooseQuestionBestAnswerController
   ],
   providers: [
     PrismaService,
@@ -53,6 +56,7 @@ import { AuthenticateStudentUseCaseAdapter } from '../use-case-adapter/authentic
     FetchQuestionAnswersUseCaseAdapter,
     RegisterStudentUseCaseAdapter,
     AuthenticateStudentUseCaseAdapter,
+    ChooseQuestionBestAnswerUseCaseAdapter
   ],
 })
 export class HttpModule {}
