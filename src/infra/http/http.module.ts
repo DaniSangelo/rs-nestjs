@@ -38,6 +38,7 @@ import { FetchQuestionCommentsUseCaseAdapter } from '../use-case-adapter/fetch-q
 import { FetchQuestionCommentsController } from './controllers/fetch-question-comments.controller'
 import { FetchAnswerCommentsController } from './controllers/fetch-answer-comments.controller'
 import { FetchAnswerCommentsUseCaseAdapter } from '../use-case-adapter/fetch-answer-comments-adapter'
+import { UploadAttachmentController } from './controllers/upload-attachment.controller'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -60,6 +61,7 @@ import { FetchAnswerCommentsUseCaseAdapter } from '../use-case-adapter/fetch-ans
     DeleteAnswerCommentController,
     FetchQuestionCommentsController,
     FetchAnswerCommentsController,
+    UploadAttachmentController
   ],
   providers: [
     PrismaService,
