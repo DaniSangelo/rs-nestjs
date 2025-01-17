@@ -6,7 +6,6 @@ import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import { EnvService } from '../env/env.service'
 import { randomUUID } from 'node:crypto'
 import { Injectable } from '@nestjs/common'
-import { headerDefault } from '@aws-sdk/middleware-header-default';
 
 @Injectable()
 export class R2Storage implements Uploader {
@@ -26,33 +25,23 @@ export class R2Storage implements Uploader {
       },
       region: 'auto',
       forcePathStyle: true,
+      requestChecksumCalculation: 'WHEN_REQUIRED',
+      responseChecksumValidation: 'WHEN_REQUIRED',
     })
-
-    this.client.middlewareStack.add(
-      headerDefault({
-        'x-amz-checksum-crc32': 'pxLRGw==',
-      }),
-      { step: 'build' }
-    );
   }
 
   async upload(params: UploadParams): Promise<{ link: string }> {
     const uploadId = randomUUID()
     const uniqueFileName = `${uploadId}-${params.fileName}`
 
-    try {
-      await this.client.send(
-        new PutObjectCommand({
-          Bucket: this.envService.get('AWS_BUCKET_NAME'),
-          Key: uniqueFileName,
-          ContentType: params.fileType,
-          Body: params.body,
-        }),
-      )
-    } catch (error) {
-      console.log('daniel',error)
-      throw new Error()
-    }
+    await this.client.send(
+      new PutObjectCommand({
+        Bucket: this.envService.get('AWS_BUCKET_NAME'),
+        Key: uniqueFileName,
+        ContentType: params.fileType,
+        Body: params.body,
+      }),
+    )
     return { link: uniqueFileName }
   }
 }
