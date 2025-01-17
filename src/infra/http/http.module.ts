@@ -34,6 +34,8 @@ import { CommentOnAnswerUseCaseAdapter } from '../use-case-adapter/comment-on-an
 import { CommentOnAnswerController } from './controllers/comment-on-answer.controller'
 import { DeleteAnswerCommentController } from './controllers/delete-answer-comment.controller'
 import { DeleteAnswerCommentUseCaseAdapter } from '../use-case-adapter/delete-answer-comment-adapter'
+import { FetchQuestionCommentsUseCaseAdapter } from '../use-case-adapter/fetch-question-comments-adapter'
+import { FetchQuestionCommentsController } from './controllers/fetch-question-comments.controller'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -54,6 +56,7 @@ import { DeleteAnswerCommentUseCaseAdapter } from '../use-case-adapter/delete-an
     DeleteQuestionCommentController,
     CommentOnAnswerController,
     DeleteAnswerCommentController,
+    FetchQuestionCommentsController
   ],
   providers: [
     PrismaService,
@@ -73,6 +76,7 @@ import { DeleteAnswerCommentUseCaseAdapter } from '../use-case-adapter/delete-an
     DeleteQuestionCommentUseCaseAdapter,
     CommentOnAnswerUseCaseAdapter,
     DeleteAnswerCommentUseCaseAdapter,
+    FetchQuestionCommentsUseCaseAdapter
   ],
 })
 export class HttpModule {}
