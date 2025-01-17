@@ -6,8 +6,6 @@ import { FetchRecentQuestionsController } from './controllers/fetch-recent-quest
 import { DatabaseModule } from '../database/database.module'
 import { CreateQuestionUseCaseAdapter } from '../use-case-adapter/create-question-adapter'
 import { FetchRecentQuestionsUseCaseAdapter } from '../use-case-adapter/fetch-recent-questions-adapter'
-import { RegisterStudentUseCase } from '@/domain/forum/application/use-cases/register-student'
-import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases/authenticate-student'
 import { CryptographyModule } from '../cryptography/cryptograpy.module'
 import { PrismaService } from '../database/prisma/prisma.service'
 import { GetQuestionsBySlugController } from './controllers/get-question-by-slug.controller'
@@ -24,6 +22,8 @@ import { EditAnswerUseCaseAdapter } from '../use-case-adapter/edit-answer-adapte
 import { DeleteAnswerUseCaseAdapter } from '../use-case-adapter/delete-answer-adapter'
 import { AnswerQuestionUseCaseAdapter } from '../use-case-adapter/answer-question-adapter'
 import { FetchQuestionAnswersUseCaseAdapter } from '../use-case-adapter/fetch-question-answers-adapter'
+import { RegisterStudentUseCaseAdapter } from '../use-case-adapter/register-student-adapter'
+import { AuthenticateStudentUseCaseAdapter } from '../use-case-adapter/authenticate-student-adapter'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
@@ -51,8 +51,8 @@ import { FetchQuestionAnswersUseCaseAdapter } from '../use-case-adapter/fetch-qu
     EditAnswerUseCaseAdapter,
     DeleteAnswerUseCaseAdapter,
     FetchQuestionAnswersUseCaseAdapter,
-    RegisterStudentUseCase,
-    AuthenticateStudentUseCase,
+    RegisterStudentUseCaseAdapter,
+    AuthenticateStudentUseCaseAdapter,
   ],
 })
 export class HttpModule {}

@@ -1,3 +1,4 @@
-export abstract class Encrypter {
-  abstract encrypt(payload: Record<string, unknown>): Promise<string>
+export const ENCRYPTER = Symbol('Encrypter')
+export interface Encrypter {
+  encrypt(payload: Record<string, unknown>): Promise<string>
 }

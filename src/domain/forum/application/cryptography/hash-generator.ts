@@ -1,3 +1,4 @@
-export abstract class HashGenerator {
-  abstract hash(plain: string): Promise<string>
+export const HASH_GENERATOR = Symbol('HashGenerator')
+export interface HashGenerator {
+  hash(plain: string): Promise<string>
 }
