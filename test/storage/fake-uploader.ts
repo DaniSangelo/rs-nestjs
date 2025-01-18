@@ -6,18 +6,18 @@ import { randomUUID } from 'node:crypto'
 
 interface Upload {
   fileName: string
-  link: string
+  url: string
 }
 
 export class FakeUploader implements Uploader {
   public uploads: Upload[] = []
-  async upload(params: UploadParams): Promise<{ link: string }> {
-    const link = randomUUID()
+  async upload(params: UploadParams): Promise<{ url: string }> {
+    const url = randomUUID()
     this.uploads.push({
       fileName: params.fileName,
-      link,
+      url,
     })
 
-    return { link }
+    return { url }
   }
 }

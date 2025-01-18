@@ -30,7 +30,7 @@ export class R2Storage implements Uploader {
     })
   }
 
-  async upload(params: UploadParams): Promise<{ link: string }> {
+  async upload(params: UploadParams): Promise<{ url: string }> {
     const uploadId = randomUUID()
     const uniqueFileName = `${uploadId}-${params.fileName}`
 
@@ -42,6 +42,6 @@ export class R2Storage implements Uploader {
         Body: params.body,
       }),
     )
-    return { link: uniqueFileName }
+    return { url: uniqueFileName }
   }
 }

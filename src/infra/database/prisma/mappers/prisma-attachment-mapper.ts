@@ -8,7 +8,7 @@ export class PrismaAttachmentMapper {
     return {
       id: attachment.id.toString(),
       title: attachment.title,
-      url: attachment.link,
+      url: attachment.url,
     }
   }
 }
