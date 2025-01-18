@@ -28,4 +28,12 @@ export class PrismaQuestionAttachmentsRepository
       },
     })
   }
+
+  async createMany(attachments: QuestionAttachment[]): Promise<void> {
+    console.log()
+  }
+
+  async deleteMany(attachments: QuestionAttachment[]): Promise<void> {
+    console.log()
+  }
 }
