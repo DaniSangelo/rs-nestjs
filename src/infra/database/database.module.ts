@@ -21,6 +21,7 @@ import { PrismaAttachmentsRepository } from './prisma/repositories/prisma-attach
   providers: [
     PrismaService,
     PrismaQuestionAttachmentsRepository,
+    PrismaAnswerAttachmentsRepository,
     {
       provide: ANSWER_COMMENTS_REPOSITORY,
       useClass: PrismaAnswerCommentsRepository,
@@ -35,7 +36,16 @@ import { PrismaAttachmentsRepository } from './prisma/repositories/prisma-attach
     },
     {
       provide: ANSWER_ATTACHMENTS_REPOSITORY,
-      useClass: PrismaAnswerAttachmentsRepository,
+      useFactory: (
+        prismaService: PrismaService,
+        answerAttachmentsRepository: PrismaAnswerAttachmentsRepository,
+      ) => {
+        return new PrismaAnswersRepository(
+          prismaService,
+          answerAttachmentsRepository,
+        )
+      },
+      inject: [PrismaService, PrismaAnswerAttachmentsRepository],
     },
     {
       provide: ANSWERS_REPOSITORY,

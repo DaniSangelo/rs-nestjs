@@ -36,4 +36,25 @@ describe('Create answer use case', () => {
       ],
     )
   })
+
+  it('should persist attachments when creating a new answer', async () => {
+    const result = await sut.execute({
+      content: 'conteúdo questão',
+      authorId: '1',
+      questionId: '1',
+      attachmentsIds: ['1', '2'],
+    })
+    expect(result.isRight()).toBe(true)
+    expect(inMemoryAnswerAttachemtnRepository.items).toHaveLength(2)
+    expect(inMemoryAnswerAttachemtnRepository.items).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          attachmentId: new UniqueEntityID('1'),
+        }),
+        expect.objectContaining({
+          attachmentId: new UniqueEntityID('2'),
+        }),
+      ]),
+    )
+  })
 })

@@ -8,17 +8,16 @@ import { makeAnswerAttachment } from 'test/factories/make-answer-attachment'
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryAnswerAttachmentRepository: InMemoryAnswerAttachmentsRepository
-let inMemoryAnswerAttachemtnRepository: InMemoryAnswerAttachmentsRepository
 let sut: EditAnswerUseCase
 
 describe('Edit answer use case', () => {
   beforeEach(() => {
-    inMemoryAnswerAttachemtnRepository =
+    inMemoryAnswerAttachmentRepository =
       new InMemoryAnswerAttachmentsRepository()
     inMemoryAnswerAttachmentRepository =
       new InMemoryAnswerAttachmentsRepository()
     inMemoryAnswersRepository = new InMemoryAnswersRepository(
-      inMemoryAnswerAttachemtnRepository,
+      inMemoryAnswerAttachmentRepository,
     )
     sut = new EditAnswerUseCase(
       inMemoryAnswersRepository,
@@ -81,5 +80,42 @@ describe('Edit answer use case', () => {
     })
     expect(result.isLeft()).toBe(true)
     expect(result.value).toBeInstanceOf(NotAllowedError)
+  })
+
+  it('should sync new and removed attachments when editing a answer', async () => {
+    const newAnswer = makeAnswer(
+      { authorId: new UniqueEntityID('author-2') },
+      new UniqueEntityID('q2'),
+    )
+
+    await inMemoryAnswersRepository.create(newAnswer)
+    inMemoryAnswerAttachmentRepository.items.push(
+      makeAnswerAttachment({
+        answerId: newAnswer.id,
+        attachmentId: new UniqueEntityID('1'),
+      }),
+      makeAnswerAttachment({
+        answerId: newAnswer.id,
+        attachmentId: new UniqueEntityID('2'),
+      }),
+    )
+    const result = await sut.execute({
+      authorId: 'author-2',
+      answerId: newAnswer.id.toValue(),
+      content: 'new content',
+      attachmentsIds: ['1', '3'],
+    })
+
+    expect(result.isRight()).toBe(true)
+    const items = inMemoryAnswerAttachmentRepository.items
+    expect(items).toHaveLength(2)
+    const hasAttachment1 = items.some(
+      (item) => item.attachmentId.toString() === '1',
+    )
+    const hasAttachment3 = items.some(
+      (item) => item.attachmentId.toString() === '3',
+    )
+    expect(hasAttachment1).toBe(true)
+    expect(hasAttachment3).toBe(true)
   })
 })
