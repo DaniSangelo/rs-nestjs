@@ -111,21 +111,15 @@ describe('Edit question use case', () => {
     })
 
     expect(result.isRight()).toBe(true)
-    // const items = inMemoryQuestionAttachmentsRepository.items
-    // // console.log('foi', JSON.stringify(newQuestion.attachments, null, 2));
-
-    // // Check if items exist
-    // expect(items).toHaveLength(2)
-
-    // // Check individual items
-    // const hasAttachment1 = items.some(
-    //   (item) => item.attachmentId.toString() === '1',
-    // )
-    // const hasAttachment3 = items.some(
-    //   (item) => item.attachmentId.toString() === '3',
-    // )
-
-    // expect(hasAttachment1).toBe(true)
-    // expect(hasAttachment3).toBe(true)
+    const items = inMemoryQuestionAttachmentsRepository.items
+    expect(items).toHaveLength(2)
+    const hasAttachment1 = items.some(
+      (item) => item.attachmentId.toString() === '1',
+    )
+    const hasAttachment3 = items.some(
+      (item) => item.attachmentId.toString() === '3',
+    )
+    expect(hasAttachment1).toBe(true)
+    expect(hasAttachment3).toBe(true)
   })
 })

@@ -15,6 +15,7 @@ import { EditQuestionUseCaseAdapter } from '@/infra/use-case-adapter/edit-questi
 const editQuestionBodySchema = z.object({
   title: z.string(),
   content: z.string(),
+  attachments: z.array(z.string().uuid()).default([]),
 })
 
 type EditQuestionBodySchema = z.infer<typeof editQuestionBodySchema>
@@ -31,14 +32,15 @@ export class EditQuestionController {
     user: TokenPayloadSchema,
     @Param('id') questionId: string,
   ) {
-    const { title, content } = body
+    const { title, content, attachments } = body
     const userId = user.sub
 
     const result = await this.editQuestionUseCaseAdapter.execute({
       title,
       content,
       authorId: userId,
-      questionId
+      questionId,
+      attachmentsIds: attachments,
     })
 
     if (result.isLeft()) {
