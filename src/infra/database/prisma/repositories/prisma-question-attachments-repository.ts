@@ -30,10 +30,30 @@ export class PrismaQuestionAttachmentsRepository
   }
 
   async createMany(attachments: QuestionAttachment[]): Promise<void> {
-    console.log()
+    if (attachments.length === 0) {
+      return
+    }
+
+    const data = PrismaQuestionAttachmentMapper.toPrismaupdateMany(attachments)
+
+    await this.prismaService.attachment.updateMany(data)
   }
 
   async deleteMany(attachments: QuestionAttachment[]): Promise<void> {
-    console.log()
+    if (attachments.length === 0) {
+      return
+    }
+
+    const attachmentIds = attachments.map((attachment) =>
+      attachment.attachmentId.toString(),
+    )
+
+    await this.prismaService.attachment.deleteMany({
+      where: {
+        id: {
+          in: attachmentIds,
+        },
+      },
+    })
   }
 }

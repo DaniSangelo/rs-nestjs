@@ -20,6 +20,7 @@ import { PrismaAttachmentsRepository } from './prisma/repositories/prisma-attach
 @Module({
   providers: [
     PrismaService,
+    PrismaQuestionAttachmentsRepository,
     {
       provide: ANSWER_COMMENTS_REPOSITORY,
       useClass: PrismaAnswerCommentsRepository,
@@ -46,7 +47,16 @@ import { PrismaAttachmentsRepository } from './prisma/repositories/prisma-attach
     },
     {
       provide: QUESTIONS_REPOSITORY,
-      useClass: PrismaQuestionsRepository,
+      useFactory: (
+        prismaService: PrismaService,
+        questionAttachmentsRepository: PrismaQuestionAttachmentsRepository,
+      ) => {
+        return new PrismaQuestionsRepository(
+          prismaService,
+          questionAttachmentsRepository,
+        )
+      },
+      inject: [PrismaService, PrismaQuestionAttachmentsRepository],
     },
     {
       provide: ATTACHMENTS_REPOSITORY,
