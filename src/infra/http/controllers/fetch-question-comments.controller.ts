@@ -40,8 +40,8 @@ export class FetchQuestionCommentsController {
 
     if (result.isLeft()) throw new BadRequestException()
 
-    const questionComments = result.value.questionComments
+    const comments = result.value.comments
 
-    return { comments: questionComments.map(CommentPresenter.toHTTP) }
+    return { comments }
   }
 }

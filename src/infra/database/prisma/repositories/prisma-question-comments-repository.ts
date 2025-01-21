@@ -4,6 +4,7 @@ import { QuestionComment } from '@/domain/forum/enterprise/entities/question-com
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma.service'
 import { PrismaQuestionCommentMapper } from '../mappers/prisma-question-comment-mapper'
+import { CommentWithAuthor } from '@/domain/forum/enterprise/entities/value-objects/comment-with-author'
 
 @Injectable()
 export class PrismaQuestionCommentsRepository
@@ -56,5 +57,12 @@ export class PrismaQuestionCommentsRepository
     return questionComments.map((questionComment) =>
       PrismaQuestionCommentMapper.toDomain(questionComment),
     )
+  }
+
+  async findManyByQuestionIdWithAuthor(
+    questionId: string,
+    params: PaginationParams,
+  ): Promise<CommentWithAuthor[]> {
+    throw new Error('Method not implemented.')
   }
 }

@@ -1,5 +1,6 @@
 import { PaginationParams } from '@/core/repositories/pagination-params'
 import { QuestionComment } from '../../enterprise/entities/question-comment'
+import { CommentWithAuthor } from '../../enterprise/entities/value-objects/comment-with-author'
 
 export const QUESTION_COMMENTS_REPOSITORY = Symbol('QuestionCommentsRepository')
 export interface QuestionCommentsRepository {
@@ -10,4 +11,9 @@ export interface QuestionCommentsRepository {
     questionId: string,
     params: PaginationParams,
   ): Promise<QuestionComment[]>
+
+  findManyByQuestionIdWithAuthor(
+    questionId: string,
+    params: PaginationParams,
+  ): Promise<CommentWithAuthor[]>
 }
