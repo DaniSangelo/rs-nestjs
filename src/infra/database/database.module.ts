@@ -70,8 +70,8 @@ import { PrismaAttachmentsRepository } from './prisma/repositories/prisma-attach
     },
     {
       provide: ATTACHMENTS_REPOSITORY,
-      useClass: PrismaAttachmentsRepository
-    }
+      useClass: PrismaAttachmentsRepository,
+    },
   ],
   exports: [
     PrismaService,

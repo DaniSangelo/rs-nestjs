@@ -2,7 +2,7 @@ import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { TokenPayloadSchema } from '@/infra/auth/jwt.strategy'
 import { CommentOnAnswerUseCaseAdapter } from '@/infra/use-case-adapter/comment-on-answer-adapter'
 import { Body, Controller, Param, Post } from '@nestjs/common'
-import { z, ZodPipeline } from 'zod'
+import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
 
 const commentOnAnswerBodySchema = z.object({

@@ -1,5 +1,4 @@
 import { QuestionDetails } from '@/domain/forum/enterprise/entities/value-objects/question-details'
-import { a } from 'vitest/dist/chunks/suite.B2jumIFP'
 import { AttachmentPresenter } from './attachment-presenter'
 
 export class QuestionDetailsPresenter {

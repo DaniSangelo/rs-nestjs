@@ -3,7 +3,6 @@ import { AnswerAttachment } from '@/domain/forum/enterprise/entities/answer-atta
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma.service'
 import { PrismaAnswerAttachmentMapper } from '../mappers/prisma-answer-attachment-mapper'
-import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 @Injectable()
 export class PrismaAnswerAttachmentsRepository

@@ -63,7 +63,7 @@ import { UploadAndCreateAttachmentUseCaseAdapter } from '../use-case-adapter/upl
     DeleteAnswerCommentController,
     FetchQuestionCommentsController,
     FetchAnswerCommentsController,
-    UploadAttachmentController
+    UploadAttachmentController,
   ],
   providers: [
     PrismaService,
@@ -85,7 +85,7 @@ import { UploadAndCreateAttachmentUseCaseAdapter } from '../use-case-adapter/upl
     DeleteAnswerCommentUseCaseAdapter,
     FetchQuestionCommentsUseCaseAdapter,
     FetchAnswerCommentsUseCaseAdapter,
-    UploadAndCreateAttachmentUseCaseAdapter
+    UploadAndCreateAttachmentUseCaseAdapter,
   ],
 })
 export class HttpModule {}

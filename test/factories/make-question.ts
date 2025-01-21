@@ -13,7 +13,7 @@ export function makeQuestion(
   override: Partial<QuestionProps> = {},
   id?: UniqueEntityID,
 ) {
-  const title = faker.lorem.sentence();
+  const title = faker.lorem.sentence()
   const question = Question.create(
     {
       title: faker.lorem.sentence(),
