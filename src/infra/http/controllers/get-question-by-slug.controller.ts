@@ -5,8 +5,8 @@ import {
   HttpCode,
   Param,
 } from '@nestjs/common'
-import { QuestionPresenter } from '../presenters/question-presenter'
 import { GetQuestionsBySlugUseCaseAdapter } from '@/infra/use-case-adapter/get-questions-by-slug-adapter'
+import { QuestionDetailsPresenter } from '../presenters/question-details-presenter'
 
 @Controller('/questions/:slug')
 export class GetQuestionsBySlugController {
@@ -23,6 +23,8 @@ export class GetQuestionsBySlugController {
       throw new BadRequestException()
     }
 
-    return { question: QuestionPresenter.toHTTP(result.value.question) }
+    return {
+      question: QuestionDetailsPresenter.toHTTP(result.value.questionDetails),
+    }
   }
 }
