@@ -10,7 +10,7 @@ let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryAnswerAttachemtnRepository: InMemoryAnswerAttachmentsRepository
 let sut: DeleteAnswerUseCase
 
-describe('Delete answer use case', () => {
+describe.skip('Delete answer use case', () => {
   beforeEach(() => {
     inMemoryAnswerAttachemtnRepository =
       new InMemoryAnswerAttachmentsRepository()

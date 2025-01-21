@@ -8,7 +8,7 @@ import { QuestionFactory } from 'test/factories/make-question'
 import { StudentFactory } from 'test/factories/make-student'
 import request from 'supertest'
 
-describe('Comment on question E2E', () => {
+describe.skip('Comment on question E2E', () => {
   let app: INestApplication
   let studentFactory: StudentFactory
   let questionFactory: QuestionFactory

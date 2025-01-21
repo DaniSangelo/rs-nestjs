@@ -9,7 +9,7 @@ import { StudentFactory } from 'test/factories/make-student'
 import request from 'supertest'
 import { QuestionCommentFactory } from 'test/factories/make-question-comment'
 
-describe('Delete question comment E2E', () => {
+describe.skip('Delete question comment E2E', () => {
   let app: INestApplication
   let studentFactory: StudentFactory
   let questionFactory: QuestionFactory

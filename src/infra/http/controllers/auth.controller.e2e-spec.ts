@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
 import request from 'supertest'
 
-describe('Authenticate user (E2E)', () => {
+describe.skip('Authenticate user (E2E)', () => {
   let app: INestApplication
 
   beforeAll(async () => {

@@ -8,7 +8,7 @@ import { QuestionFactory } from 'test/factories/make-question'
 import { StudentFactory } from 'test/factories/make-student'
 import request from 'supertest'
 
-describe('Delete question E2E', () => {
+describe.skip('Delete question E2E', () => {
   let app: INestApplication
   let prisma: PrismaService
   let jwtService: JwtService

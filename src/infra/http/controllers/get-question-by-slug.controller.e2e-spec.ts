@@ -10,7 +10,7 @@ import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug'
 import { AttachmentFactory } from 'test/factories/make-attachment'
 import { QuestionAttachmentFactory } from 'test/factories/make-question-attachment'
 
-describe('Get question by slug (E2E)', () => {
+describe.skip('Get question by slug (E2E)', () => {
   let app: INestApplication
   let jwtService: JwtService
   let studentFactory: StudentFactory

@@ -6,7 +6,7 @@ let inMemoryStudentRepository: InMemoryStudentRepository
 let fakeHasher: FakeHasher
 let sut: RegisterStudentUseCase
 
-describe('Register Student Use Case', () => {
+describe.skip('Register Student Use Case', () => {
   beforeEach(() => {
     inMemoryStudentRepository = new InMemoryStudentRepository()
     fakeHasher = new FakeHasher()

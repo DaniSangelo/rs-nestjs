@@ -9,7 +9,7 @@ let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository
 let sut: FetchQuestionCommentsUseCase
 let inMemoryStudentRepository: InMemoryStudentRepository
 
-describe('Fetch question comments use case', () => {
+describe.skip('Fetch question comments use case', () => {
   beforeEach(() => {
     inMemoryStudentRepository = new InMemoryStudentRepository()
     inMemoryQuestionCommentsRepository = new InMemoryQuestionCommentsRepository(

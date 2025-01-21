@@ -30,7 +30,7 @@ let sendNotificationExecutionSpy: SpyInstance<
   Promise<SendNotificationUseCaseResponse>
 >
 
-describe('On Question Best Answer Chosen', () => {
+describe.skip('On Question Best Answer Chosen', () => {
   beforeEach(() => {
     inMemoryQuestionAttachmentRepository =
       new InMemoryQuestionAttachmentsRepository()

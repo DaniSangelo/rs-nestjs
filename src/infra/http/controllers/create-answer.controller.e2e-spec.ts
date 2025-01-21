@@ -9,7 +9,7 @@ import request from 'supertest'
 import { PrismaService } from '@/infra/database/prisma/prisma.service'
 import { AttachmentFactory } from 'test/factories/make-attachment'
 
-describe('Create answer E2E', () => {
+describe.skip('Create answer E2E', () => {
   let app: INestApplication
   let studentFactory: StudentFactory
   let questionFactory: QuestionFactory

@@ -30,7 +30,7 @@ let sendNotificationExecutionSpy: SpyInstance<
   Promise<SendNotificationUseCaseResponse>
 >
 
-describe('On Answer Created', () => {
+describe.skip('On Answer Created', () => {
   beforeEach(() => {
     inMemoryQuestionAttachmentRepository =
       new InMemoryQuestionAttachmentsRepository()

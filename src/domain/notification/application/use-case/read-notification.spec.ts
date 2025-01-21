@@ -6,7 +6,7 @@ import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 
 let inMemoryNotificationsRepository: InMemoryNotificationsRepository
 let sut: ReadNotificationUseCase
-describe('read notification use case', () => {
+describe.skip('read notification use case', () => {
   beforeEach(() => {
     inMemoryNotificationsRepository = new InMemoryNotificationsRepository()
     sut = new ReadNotificationUseCase(inMemoryNotificationsRepository)

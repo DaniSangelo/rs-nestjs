@@ -43,7 +43,7 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
   async save(question: Question): Promise<void> {
     const itemIndex = this.items.findIndex((item) => item.id === question.id)
     this.items[itemIndex] = question
-
+    console.log('HERE')
     await this.questionAttachmentsRepository.createMany(
       question.attachments.getNewItems(),
     )

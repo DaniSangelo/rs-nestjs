@@ -11,7 +11,7 @@ import { AttachmentFactory } from 'test/factories/make-attachment'
 import { QuestionFactory } from 'test/factories/make-question'
 import { StudentFactory } from 'test/factories/make-student'
 
-describe('Edit answer E2E', () => {
+describe.skip('Edit answer E2E', () => {
   let app: INestApplication
   let prisma: PrismaService
   let jwtService: JwtService

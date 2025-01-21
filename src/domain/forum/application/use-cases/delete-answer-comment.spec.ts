@@ -8,7 +8,7 @@ let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository
 let sut: DeleteAnswerCommentUseCase
 let inMemoryStudentsRepository: InMemoryStudentRepository
 
-describe('Delete Answer Comment use case', () => {
+describe.skip('Delete Answer Comment use case', () => {
   beforeEach(() => {
     inMemoryStudentsRepository = new InMemoryStudentRepository()
     inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository(

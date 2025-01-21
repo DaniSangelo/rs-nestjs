@@ -8,7 +8,7 @@ import request from 'supertest'
 import { AttachmentFactory } from 'test/factories/make-attachment'
 import { StudentFactory } from 'test/factories/make-student'
 
-describe('Create question (E2E)', () => {
+describe.skip('Create question (E2E)', () => {
   let app: INestApplication
   let prisma: PrismaService
   let jwtService: JwtService

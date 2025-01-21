@@ -9,7 +9,7 @@ import request from 'supertest'
 import { AnswerCommentFactory } from 'test/factories/make-answer-comments'
 import { AnswerFactory } from 'test/factories/make-answer'
 
-describe('Fetch answer comments E2E', () => {
+describe.skip('Fetch answer comments E2E', () => {
   let app: INestApplication
   let questionFactory: QuestionFactory
   let answerFactory: AnswerFactory

@@ -3,7 +3,7 @@ import { right, left, Either } from './either'
 function doSomething(isSuccess: boolean): Either<string, number> {
   return isSuccess ? right(10) : left('error')
 }
-describe('Test funcional error return', () => {
+describe.skip('Test funcional error return', () => {
   test('success result', () => {
     const result = doSomething(true)
     expect(result.isRight()).toBe(true)

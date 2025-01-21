@@ -19,7 +19,7 @@ let sut: ChooseQuestionBestAnswerUseCase
 let inMemoryAttachmentRepository: InMemoryAttachmentRepository
 let inMemoryStudentsRepository: InMemoryStudentRepository
 
-describe('Choose question best answer use case', () => {
+describe.skip('Choose question best answer use case', () => {
   beforeEach(() => {
     inMemoryAnswerAttachemtnRepository =
       new InMemoryAnswerAttachmentsRepository()

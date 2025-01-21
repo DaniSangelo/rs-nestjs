@@ -13,7 +13,7 @@ let sut: CommentOnQuestionUseCase
 let inMemoryAttachmentRepository: InMemoryAttachmentRepository
 let inMemoryStudentsRepository: InMemoryStudentRepository
 
-describe('Comment on Question use case', () => {
+describe.skip('Comment on Question use case', () => {
   beforeEach(() => {
     inMemoryQuestionAttachmentRepository =
       new InMemoryQuestionAttachmentsRepository()

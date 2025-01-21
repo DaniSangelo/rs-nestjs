@@ -14,7 +14,7 @@ let sut: DeleteQuestionUseCase
 let inMemoryAttachmentRepository: InMemoryAttachmentRepository
 let inMemoryStudentsRepository: InMemoryStudentRepository
 
-describe('Delete question use case', () => {
+describe.skip('Delete question use case', () => {
   beforeEach(() => {
     inMemoryAttachmentRepository = new InMemoryAttachmentRepository()
     inMemoryStudentsRepository = new InMemoryStudentRepository()

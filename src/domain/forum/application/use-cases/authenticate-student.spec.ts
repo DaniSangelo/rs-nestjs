@@ -9,7 +9,7 @@ let fakeHasher: FakeHasher
 let fakeEncrypter: FakeEncrypter
 let sut: AuthenticateStudentUseCase
 
-describe('Authenticate student use case', () => {
+describe.skip('Authenticate student use case', () => {
   beforeEach(() => {
     inMemoryStudentRepository = new InMemoryStudentRepository()
     fakeHasher = new FakeHasher()

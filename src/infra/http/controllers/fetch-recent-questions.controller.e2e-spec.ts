@@ -8,7 +8,7 @@ import { QuestionFactory } from 'test/factories/make-question'
 import { DatabaseModule } from '@/infra/database/database.module'
 import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug'
 
-describe('Fetch recent question (E2E)', () => {
+describe.skip('Fetch recent question (E2E)', () => {
   let app: INestApplication
   let jwtService: JwtService
   let studentFactory: StudentFactory

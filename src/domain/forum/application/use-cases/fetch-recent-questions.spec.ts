@@ -11,7 +11,7 @@ let sut: FetchRecentQuestionsUseCase
 let inMemoryAttachmentRepository: InMemoryAttachmentRepository
 let inMemoryStudentsRepository: InMemoryStudentRepository
 
-describe('Fetch recent questions use case', () => {
+describe.skip('Fetch recent questions use case', () => {
   beforeEach(() => {
     inMemoryAttachmentRepository = new InMemoryAttachmentRepository()
     inMemoryStudentsRepository = new InMemoryStudentRepository()

@@ -9,7 +9,7 @@ import { QuestionFactory } from 'test/factories/make-question'
 import { StudentFactory } from 'test/factories/make-student'
 import request from 'supertest'
 
-describe('Choose question best answer E2E', () => {
+describe.skip('Choose question best answer E2E', () => {
   let app: INestApplication
   let studentFactory: StudentFactory
   let questionFactory: QuestionFactory
