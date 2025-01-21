@@ -36,6 +36,10 @@ import { PrismaAttachmentsRepository } from './prisma/repositories/prisma-attach
     },
     {
       provide: ANSWER_ATTACHMENTS_REPOSITORY,
+      useClass: PrismaAnswerAttachmentsRepository,
+    },
+    {
+      provide: ANSWERS_REPOSITORY,
       useFactory: (
         prismaService: PrismaService,
         answerAttachmentsRepository: PrismaAnswerAttachmentsRepository,
@@ -46,10 +50,6 @@ import { PrismaAttachmentsRepository } from './prisma/repositories/prisma-attach
         )
       },
       inject: [PrismaService, PrismaAnswerAttachmentsRepository],
-    },
-    {
-      provide: ANSWERS_REPOSITORY,
-      useClass: PrismaAnswersRepository,
     },
     {
       provide: QUESTIONS_ATTACHMENT_REPOSITORY,

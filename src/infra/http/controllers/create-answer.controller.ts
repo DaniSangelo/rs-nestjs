@@ -7,6 +7,7 @@ import { AnswerQuestionUseCaseAdapter } from '@/infra/use-case-adapter/answer-qu
 
 const createAnswerQuestionBodySchema = z.object({
   content: z.string(),
+  attachments: z.array(z.string().uuid()).default([]),
 })
 
 const bodyValidationPipe = new ZodValidationPipe(createAnswerQuestionBodySchema)
@@ -27,7 +28,7 @@ export class CreateAnswerController {
       authorId: userId,
       content: body.content,
       questionId,
-      attachmentsIds: [],
+      attachmentsIds: body.attachments,
     })
   }
 }

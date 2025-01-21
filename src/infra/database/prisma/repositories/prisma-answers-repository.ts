@@ -18,6 +18,10 @@ export class PrismaAnswersRepository implements AnswersRepository {
     await this.prismaService.answer.create({
       data,
     })
+
+    await this.answerAttachmentsRepository.createMany(
+      answer.attachments.getItems(),
+    )
   }
 
   async findById(answerId: string): Promise<Answer | null> {
@@ -40,12 +44,20 @@ export class PrismaAnswersRepository implements AnswersRepository {
 
   async save(answer: Answer): Promise<void> {
     const data = PrismaAnswerMapper.toPrisma(answer)
-    await this.prismaService.answer.update({
-      where: {
-        id: data.id,
-      },
-      data,
-    })
+    await Promise.all([
+      this.prismaService.answer.update({
+        where: {
+          id: data.id,
+        },
+        data,
+      }),
+      this.answerAttachmentsRepository.createMany(
+        answer.attachments.getNewItems(),
+      ),
+      this.answerAttachmentsRepository.deleteMany(
+        answer.attachments.getRemovedItems(),
+      ),
+    ])
   }
 
   async findManyByQuestionId(

@@ -34,7 +34,7 @@ export class PrismaQuestionAttachmentsRepository
       return
     }
 
-    const data = PrismaQuestionAttachmentMapper.toPrismaupdateMany(attachments)
+    const data = PrismaQuestionAttachmentMapper.toPrismaUpdateMany(attachments)
 
     await this.prismaService.attachment.updateMany(data)
   }

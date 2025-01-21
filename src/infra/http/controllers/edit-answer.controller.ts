@@ -7,6 +7,7 @@ import { EditAnswerUseCaseAdapter } from '@/infra/use-case-adapter/edit-answer-a
 
 const editAnswerBodySchema = z.object({
   content: z.string(),
+  attachments: z.array(z.string().uuid()).default([]),
 })
 type EditAnswerBodySchema = z.infer<typeof editAnswerBodySchema>
 
@@ -24,12 +25,11 @@ export class EditAnswerController {
     @Body(bodyValidationPipe) body: EditAnswerBodySchema,
   ) {
     const userId = user.sub
-
     await this.editAnswerUseCase.execute({
       authorId: userId,
       content: body.content,
       answerId,
-      attachmentsIds: [],
+      attachmentsIds: body.attachments,
     })
   }
 }

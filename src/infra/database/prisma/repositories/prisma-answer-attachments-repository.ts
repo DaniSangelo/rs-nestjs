@@ -3,6 +3,7 @@ import { AnswerAttachment } from '@/domain/forum/enterprise/entities/answer-atta
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma.service'
 import { PrismaAnswerAttachmentMapper } from '../mappers/prisma-answer-attachment-mapper'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 @Injectable()
 export class PrismaAnswerAttachmentsRepository
@@ -16,13 +17,43 @@ export class PrismaAnswerAttachmentsRepository
         answerId,
       },
     })
-    return answerAttachments.map(PrismaAnswerAttachmentMapper.toDomain)
+    return answerAttachments.map((attachment) => {
+      return PrismaAnswerAttachmentMapper.toDomain(attachment)
+    })
   }
 
   async deleteManyByAnswerId(answerId: string): Promise<void> {
     await this.prismaService.attachment.deleteMany({
       where: {
         answerId,
+      },
+    })
+  }
+
+  async createMany(attachments: AnswerAttachment[]): Promise<void> {
+    if (attachments.length === 0) {
+      return
+    }
+
+    const data = PrismaAnswerAttachmentMapper.toPrismaUpdateMany(attachments)
+
+    await this.prismaService.attachment.updateMany(data)
+  }
+
+  async deleteMany(attachments: AnswerAttachment[]): Promise<void> {
+    if (attachments.length === 0) {
+      return
+    }
+
+    const attachmentIds = attachments.map((attachment) =>
+      attachment.attachmentId.toString(),
+    )
+
+    await this.prismaService.attachment.deleteMany({
+      where: {
+        id: {
+          in: attachmentIds,
+        },
       },
     })
   }

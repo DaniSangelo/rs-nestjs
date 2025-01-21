@@ -35,7 +35,6 @@ export class EditAnswerUseCase {
     attachmentsIds,
   }: EditAnswerUseCaseRequest): Promise<EditAnswerUseCaseResponse> {
     const answer = await this.answersRepository.findById(answerId)
-
     if (!answer) {
       return left(new ResourceNotFoundError())
     }
