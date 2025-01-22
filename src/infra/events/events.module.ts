@@ -16,6 +16,7 @@ import {
   ANSWERS_REPOSITORY,
   AnswersRepository,
 } from '@/domain/forum/application/repositories/answers-repository'
+import { ReadNotificationUseCaseAdapter } from '../use-case-adapter/notification/read-notification-adapter'
 
 @Module({
   imports: [DatabaseModule],
@@ -53,6 +54,13 @@ import {
         )
       },
       inject: [ANSWERS_REPOSITORY, SendNotificationUseCaseAdapter],
+    },
+    {
+      provide: ReadNotificationUseCaseAdapter,
+      useFactory: (notificationsRepository: NotificationsRepository) => {
+        return new ReadNotificationUseCaseAdapter(notificationsRepository)
+      },
+      inject: [NOTIFICATIONS_REPOSITORY],
     },
   ],
 })

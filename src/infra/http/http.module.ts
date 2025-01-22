@@ -41,6 +41,8 @@ import { FetchAnswerCommentsUseCaseAdapter } from '../use-case-adapter/forum/fet
 import { UploadAttachmentController } from './controllers/upload-attachment.controller'
 import { StorageModule } from '../storage/storage.module'
 import { UploadAndCreateAttachmentUseCaseAdapter } from '../use-case-adapter/forum/upload-and-create-attachment-adapter'
+import { ReadNotificationController } from './controllers/read-notification.controller'
+import { ReadNotificationUseCaseAdapter } from '../use-case-adapter/notification/read-notification-adapter'
 
 @Module({
   imports: [DatabaseModule, CryptographyModule, StorageModule],
@@ -64,6 +66,7 @@ import { UploadAndCreateAttachmentUseCaseAdapter } from '../use-case-adapter/for
     FetchQuestionCommentsController,
     FetchAnswerCommentsController,
     UploadAttachmentController,
+    ReadNotificationController,
   ],
   providers: [
     PrismaService,
@@ -86,6 +89,7 @@ import { UploadAndCreateAttachmentUseCaseAdapter } from '../use-case-adapter/for
     FetchQuestionCommentsUseCaseAdapter,
     FetchAnswerCommentsUseCaseAdapter,
     UploadAndCreateAttachmentUseCaseAdapter,
+    ReadNotificationUseCaseAdapter,
   ],
 })
 export class HttpModule {}
