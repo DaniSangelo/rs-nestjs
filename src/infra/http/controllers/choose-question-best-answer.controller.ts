@@ -1,6 +1,6 @@
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { TokenPayloadSchema } from '@/infra/auth/jwt.strategy'
-import { ChooseQuestionBestAnswerUseCaseAdapter } from '@/infra/use-case-adapter/choose-question-best-answer-adapter'
+import { ChooseQuestionBestAnswerUseCaseAdapter } from '@/infra/use-case-adapter/forum/choose-question-best-answer-adapter'
 import { Controller, HttpCode, Param, Patch } from '@nestjs/common'
 
 @Controller('/answers/:answerId/choose-as-best')

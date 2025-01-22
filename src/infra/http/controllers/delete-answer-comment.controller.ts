@@ -1,6 +1,6 @@
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { TokenPayloadSchema } from '@/infra/auth/jwt.strategy'
-import { DeleteAnswerCommentUseCaseAdapter } from '@/infra/use-case-adapter/delete-answer-comment-adapter'
+import { DeleteAnswerCommentUseCaseAdapter } from '@/infra/use-case-adapter/forum/delete-answer-comment-adapter'
 import { Controller, Delete, HttpCode, Param } from '@nestjs/common'
 
 @Controller('/answers/comments/:id')

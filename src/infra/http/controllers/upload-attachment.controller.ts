@@ -1,5 +1,5 @@
 import { InvalidAttachmentTypeException } from '@/domain/forum/application/use-cases/errors/invalid-attachment-type-exception'
-import { UploadAndCreateAttachmentUseCaseAdapter } from '@/infra/use-case-adapter/upload-and-create-attachment-adapter'
+import { UploadAndCreateAttachmentUseCaseAdapter } from '@/infra/use-case-adapter/forum/upload-and-create-attachment-adapter'
 import {
   BadRequestException,
   Controller,

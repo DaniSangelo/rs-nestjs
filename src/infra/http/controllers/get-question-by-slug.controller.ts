@@ -5,7 +5,7 @@ import {
   HttpCode,
   Param,
 } from '@nestjs/common'
-import { GetQuestionsBySlugUseCaseAdapter } from '@/infra/use-case-adapter/get-questions-by-slug-adapter'
+import { GetQuestionsBySlugUseCaseAdapter } from '@/infra/use-case-adapter/forum/get-questions-by-slug-adapter'
 import { QuestionDetailsPresenter } from '../presenters/question-details-presenter'
 
 @Controller('/questions/:slug')

@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { TokenPayloadSchema } from '@/infra/auth/jwt.strategy'
-import { EditAnswerUseCaseAdapter } from '@/infra/use-case-adapter/edit-answer-adapter'
+import { EditAnswerUseCaseAdapter } from '@/infra/use-case-adapter/forum/edit-answer-adapter'
 
 const editAnswerBodySchema = z.object({
   content: z.string(),

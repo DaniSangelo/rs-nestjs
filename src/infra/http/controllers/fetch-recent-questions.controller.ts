@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { z } from 'zod'
-import { FetchRecentQuestionsUseCaseAdapter } from '@/infra/use-case-adapter/fetch-recent-questions-adapter'
+import { FetchRecentQuestionsUseCaseAdapter } from '@/infra/use-case-adapter/forum/fetch-recent-questions-adapter'
 import { QuestionPresenter } from '../presenters/question-presenter'
 
 const pageQueryParamsSchema = z

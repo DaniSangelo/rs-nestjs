@@ -11,7 +11,7 @@ import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
 import { z } from 'zod'
 import { StudentAlreadyExistsException } from '@/domain/forum/application/use-cases/errors/student-already-exists-exception'
 import { Public } from '@/infra/auth/public'
-import { RegisterStudentUseCaseAdapter } from '@/infra/use-case-adapter/register-student-adapter'
+import { RegisterStudentUseCaseAdapter } from '@/infra/use-case-adapter/forum/register-student-adapter'
 
 const createAccountBodySchema = z.object({
   name: z.string(),

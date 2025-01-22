@@ -3,7 +3,7 @@ import { TokenPayloadSchema } from '@/infra/auth/jwt.strategy'
 import { Body, Controller, Param, Post } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
-import { AnswerQuestionUseCaseAdapter } from '@/infra/use-case-adapter/answer-question-adapter'
+import { AnswerQuestionUseCaseAdapter } from '@/infra/use-case-adapter/forum/answer-question-adapter'
 
 const createAnswerQuestionBodySchema = z.object({
   content: z.string(),

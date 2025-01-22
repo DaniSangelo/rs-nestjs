@@ -1,6 +1,6 @@
 import { CurrentUser } from '@/infra/auth/current-user-decorator'
 import { TokenPayloadSchema } from '@/infra/auth/jwt.strategy'
-import { CommentOnQuestionUseCaseAdapter } from '@/infra/use-case-adapter/comment-on-question-adapter'
+import { CommentOnQuestionUseCaseAdapter } from '@/infra/use-case-adapter/forum/comment-on-question-adapter'
 import { Body, Controller, Param, Post } from '@nestjs/common'
 import { z } from 'zod'
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
