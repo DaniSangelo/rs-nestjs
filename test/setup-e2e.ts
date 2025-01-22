@@ -1,10 +1,13 @@
 import { PrismaClient } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
-import 'dotenv/config'
+import { config } from 'dotenv'
 import { execSync } from 'node:child_process'
 import { DomainEvents } from '@/core/events/domain-events'
 
 const prisma = new PrismaClient()
+
+config({ path: '.env', override: true })
+config({ path: '.env.test', override: true })
 
 function generateUniqueDataBaseUrl(schemaId: string) {
   if (!process.env.DATABASE_URL)
