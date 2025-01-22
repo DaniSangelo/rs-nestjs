@@ -9,6 +9,7 @@ import { QuestionFactory } from 'test/factories/make-question'
 import { StudentFactory } from 'test/factories/make-student'
 import request from 'supertest'
 import { waitFor } from 'test/utils/wait-for'
+import { DomainEvents } from '@/core/events/domain-events'
 
 describe('On question best answer E2E', () => {
   let app: INestApplication
@@ -36,6 +37,8 @@ describe('On question best answer E2E', () => {
     answerFactory = moduleRef.get(AnswerFactory)
     jwtService = moduleRef.get(JwtService)
     prisma = moduleRef.get(PrismaService)
+
+    DomainEvents.shouldRun = true
 
     await app.init()
   })
