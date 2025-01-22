@@ -101,6 +101,7 @@ export class PrismaQuestionsRepository implements QuestionsRepository {
 
     if (cacheHit) {
       const cacheData = JSON.parse(cacheHit)
+
       return PrismaQuestionDetailsMapper.toDomain(cacheData)
     }
 
@@ -116,12 +117,8 @@ export class PrismaQuestionsRepository implements QuestionsRepository {
 
     if (!question) return null
 
+    await this.cache.set(`question:${slug}:details`, JSON.stringify(question))
     const questionDetails = PrismaQuestionDetailsMapper.toDomain(question)
-
-    await this.cache.set(
-      `question:${slug}:details`,
-      JSON.stringify(questionDetails),
-    )
 
     return questionDetails
   }
