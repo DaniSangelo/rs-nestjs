@@ -17,9 +17,10 @@ import {
   AnswersRepository,
 } from '@/domain/forum/application/repositories/answers-repository'
 import { ReadNotificationUseCaseAdapter } from '../use-case-adapter/notification/read-notification-adapter'
+import { CacheModule } from '../cache/cache.module'
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, CacheModule],
   providers: [
     {
       provide: OnAnswerCreatedAdapter,

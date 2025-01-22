@@ -18,12 +18,16 @@ import { ATTACHMENTS_REPOSITORY } from '@/domain/forum/application/repositories/
 import { PrismaAttachmentsRepository } from './prisma/repositories/prisma-attachments-repository'
 import { NOTIFICATIONS_REPOSITORY } from '@/domain/notification/application/repositories/notifications-repository'
 import { PrismaNotificationsRepository } from './prisma/repositories/prisma-notification-repository'
+import { CacheModule } from '../cache/cache.module'
+import { RedisCacheRepository } from '../cache/redis/redis-cache-repository'
 
 @Module({
+  imports: [CacheModule],
   providers: [
     PrismaService,
     PrismaQuestionAttachmentsRepository,
     PrismaAnswerAttachmentsRepository,
+    RedisCacheRepository,
     {
       provide: ANSWER_COMMENTS_REPOSITORY,
       useClass: PrismaAnswerCommentsRepository,
@@ -62,13 +66,19 @@ import { PrismaNotificationsRepository } from './prisma/repositories/prisma-noti
       useFactory: (
         prismaService: PrismaService,
         questionAttachmentsRepository: PrismaQuestionAttachmentsRepository,
+        cacheRepository: RedisCacheRepository,
       ) => {
         return new PrismaQuestionsRepository(
           prismaService,
           questionAttachmentsRepository,
+          cacheRepository,
         )
       },
-      inject: [PrismaService, PrismaQuestionAttachmentsRepository],
+      inject: [
+        PrismaService,
+        PrismaQuestionAttachmentsRepository,
+        RedisCacheRepository,
+      ],
     },
     {
       provide: NOTIFICATIONS_REPOSITORY,
@@ -92,6 +102,7 @@ import { PrismaNotificationsRepository } from './prisma/repositories/prisma-noti
     ATTACHMENTS_REPOSITORY,
     PrismaQuestionAttachmentsRepository,
     PrismaAnswerAttachmentsRepository,
+    RedisCacheRepository,
   ],
 })
 export class DatabaseModule {}

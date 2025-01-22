@@ -1,19 +1,24 @@
 import { PaginationParams } from '@/core/repositories/pagination-params'
 import { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository'
 import { Question } from '@/domain/forum/enterprise/entities/question'
-import { Injectable } from '@nestjs/common'
+import { Inject, Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma.service'
 import { PrismaQuestionMapper } from '../mappers/prisma-question-mapper'
 import { PrismaQuestionAttachmentsRepository } from './prisma-question-attachments-repository'
 import { QuestionDetails } from '@/domain/forum/enterprise/entities/value-objects/question-details'
 import { PrismaQuestionDetailsMapper } from '../mappers/prisma-question-details-mapper'
 import { DomainEvents } from '@/core/events/domain-events'
+import {
+  CACHE_REPOSITORY,
+  CacheRepository,
+} from '@/infra/cache/cache-repository'
 
 @Injectable()
 export class PrismaQuestionsRepository implements QuestionsRepository {
   constructor(
     private prismaService: PrismaService,
     private questionAttachmentsRepository: PrismaQuestionAttachmentsRepository,
+    @Inject(CACHE_REPOSITORY) private cache: CacheRepository,
   ) {}
 
   async create(question: Question): Promise<void> {
@@ -45,6 +50,7 @@ export class PrismaQuestionsRepository implements QuestionsRepository {
       this.questionAttachmentsRepository.deleteMany(
         question.attachments.getRemovedItems(),
       ),
+      this.cache.delete(`question:${data.slug}:details`),
     ])
 
     DomainEvents.dispatchEventsForAggregate(question.id)
@@ -91,6 +97,13 @@ export class PrismaQuestionsRepository implements QuestionsRepository {
   }
 
   async findDetailsBySlug(slug: string): Promise<QuestionDetails | null> {
+    const cacheHit = await this.cache.get(`question:${slug}:details`)
+
+    if (cacheHit) {
+      const cacheData = JSON.parse(cacheHit)
+      return PrismaQuestionDetailsMapper.toDomain(cacheData)
+    }
+
     const question = await this.prismaService.question.findUnique({
       where: {
         slug,
@@ -101,6 +114,15 @@ export class PrismaQuestionsRepository implements QuestionsRepository {
       },
     })
 
-    return question ? PrismaQuestionDetailsMapper.toDomain(question) : null
+    if (!question) return null
+
+    const questionDetails = PrismaQuestionDetailsMapper.toDomain(question)
+
+    await this.cache.set(
+      `question:${slug}:details`,
+      JSON.stringify(questionDetails),
+    )
+
+    return questionDetails
   }
 }
